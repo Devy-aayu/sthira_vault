@@ -1,0 +1,15 @@
+{
+  "google": {
+    "clientId": "",
+    "clientSecret": ""
+  },
+  "microsoft": {
+    "clientId": ""
+  },
+  "dropbox": {
+    "clientId": ""
+  },
+  "pcloud": {
+    "clientId": ""
+  }
+}

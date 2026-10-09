@@ -1,0 +1,56 @@
+{
+  "name": "cloud-backup-electron",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Standalone Electron cloud backup desktop application",
+  "main": "electron/main.cjs",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build:renderer": "vite build",
+    "start": "npm run build:renderer && electron .",
+    "test": "node --test tests/*.test.cjs",
+    "build:portable": "npm run build:renderer && electron-builder --win portable",
+    "build:installer": "npm run build:renderer && electron-builder --win nsis"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.1091.0",
+    "@aws-sdk/lib-storage": "3.1091.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "6.0.3",
+    "electron": "43.1.1",
+    "electron-builder": "26.15.3",
+    "vite": "8.1.5"
+  },
+  "build": {
+    "appId": "com.cloudbackup.desktop",
+    "productName": "Cloud Backup App",
+    "asar": true,
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {},
+    "portable": {
+      "artifactName": "Cloud-Backup-App-Portable.exe"
+    },
+    "nsis": {
+      "artifactName": "Cloud-Backup-App-Setup.exe",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
